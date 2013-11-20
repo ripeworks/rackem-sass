@@ -1,5 +1,11 @@
 {
-    "require": {
-        "richthegeek/phpsass": "@stable"
-    }
+	"require": {
+		"richthegeek/phpsass": "@stable",
+		"rackem/rackem": "@stable"
+	},
+	"autoload": {
+		"psr-0": {
+			"Rackem": "lib"
+		}
+	}
 }

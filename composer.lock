@@ -3,8 +3,59 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f246ee17a4a4dc7b2d587e58d9cff070",
+    "hash": "094fb86bc6eff36d2e9846b1b7404906",
     "packages": [
+        {
+            "name": "rackem/rackem",
+            "version": "0.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tamagokun/rackem.git",
+                "reference": "4557b9f6db0ad8eb9daeeb947404f5c7b6e3dbdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tamagokun/rackem/zipball/4557b9f6db0ad8eb9daeeb947404f5c7b6e3dbdc",
+                "reference": "4557b9f6db0ad8eb9daeeb947404f5c7b6e3dbdc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec2": "dev-master"
+            },
+            "bin": [
+                "bin/rackem"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Rackem": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Kruk",
+                    "email": "tamagokun@gmail.com",
+                    "homepage": "http://ripeworks.com"
+                }
+            ],
+            "description": "Rack for PHP",
+            "homepage": "http://github.com/tamagokun/rackem",
+            "keywords": [
+                "http",
+                "interface",
+                "middleware",
+                "rack",
+                "webserver"
+            ],
+            "time": "2013-11-20 19:14:32"
+        },
         {
             "name": "richthegeek/phpsass",
             "version": "2012-06-27",
@@ -65,7 +116,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "richthegeek/phpsass": 0
+        "richthegeek/phpsass": 0,
+        "rackem/rackem": 0
     },
     "platform": [
 
