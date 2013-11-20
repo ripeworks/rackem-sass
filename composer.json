@@ -1,4 +1,17 @@
 {
+	"name": "rackem/sass",
+	"type": "library",
+	"description": "Sass middleware for Rackem",
+	"keywords": ["rack","sass","scss","middleware","compass","rackem"],
+	"homepage": "https://github.com/ripeworks/rackem-sass",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mike Kruk",
+			"email": "mike@ripeworks.com",
+			"homepage": "http://ripeworks.com"
+		}
+	]
 	"require": {
 		"richthegeek/phpsass": "@stable",
 		"rackem/rackem": "@stable"
