@@ -11,7 +11,7 @@
 			"email": "mike@ripeworks.com",
 			"homepage": "http://ripeworks.com"
 		}
-	]
+	],
 	"require": {
 		"richthegeek/phpsass": "@stable",
 		"rackem/rackem": "@stable"
