@@ -12,7 +12,7 @@ Rack'em middleware to serve SASS dynamically.
 \Rackem::use_middleware(new \Rackem\Sass());
 
 
-// Map to a specific path
+// or map to a specific path
 \Rackem::map("/css", function($env) {
 	$sass = new \Rackem\Sass\Environment();
 	$sass->append_path("src/sass");
@@ -23,6 +23,8 @@ Rack'em middleware to serve SASS dynamically.
 ```
 
 ## Options
+
+You can pass an options `array()` with the middleware, or to a `Rackem\Sass\Enviroment` instance.
 
 | Option | Info | Default |
 |--------|------|---------|
