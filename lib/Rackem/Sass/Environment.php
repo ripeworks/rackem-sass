@@ -20,7 +20,9 @@ class Environment
 			),
 			"parser" => array(
 				"cache" => false
-			)
+			),
+            "persist" => false,
+            "public" => getcwd()
 		);
 		$this->options = array_merge($defaults, $options);
 	}
@@ -29,8 +31,7 @@ class Environment
 	{
 		$file_parts = explode(".", $file);
 		$extension = array_pop($file_parts);
-		if(file_exists($file) && $extension == "css") return false;
-		return true;
+        return $extension === "css";
 	}
 
 	public function append_path($path)
@@ -40,23 +41,37 @@ class Environment
 
 	public function call($env)
 	{
-		$file = substr($env['PATH_INFO'], 1);
-		if(!$this->accepts($file)) return $this->fail(404);
+		$req = substr($env['PATH_INFO'], 1);
+		if(!$this->accepts($req)) return $this->fail(404);
 
-		$source = $this->locate($file);
+		$source = $this->locate($req);
 		if(!$source) return $this->fail(404);
 
-		$this->parser = new \SassParser($this->options["parser"]);
-		$css = $this->parser->toCss($source);
+        $public = rtrim($this->options["public"], "/");
+        $file = "$public/$req";
 
-		return array(
-			200,
-			array(
-				"Content-Type" => "text/css",
-				"Content-Length" => strlen($css)
-			),
-			array($css)
-		);
+        // persist file if persist = true
+        if ($this->options["persist"] === true) {
+            if ($this->needs_update($source, $file)) {
+                $css = $this->parse($source);
+
+                $handle = fopen($file, 'w');
+                fwrite($handle, $css);
+                fclose($handle);
+            }
+            $res = new \Rackem\File($public);
+            return $res->call($env);
+        }
+
+        $css = $this->parse($source);
+        return array(
+            200,
+            array(
+                "Content-Type" => "text/css",
+                "Content-Length" => strlen($css)
+            ),
+            array($css)
+        );
 	}
 
 	public function fail($status = 404)
@@ -87,4 +102,20 @@ class Environment
 		}
 		return false;
 	}
+
+    public function needs_update($source, $target)
+	{
+		if(!file_exists($target)) return true;
+
+		$s_date = filemtime($source);
+		$t_date = filemtime($target);
+
+		return ($s_date > $t_date);
+	}
+
+    public function parse($source)
+    {
+        $this->parser = new \SassParser($this->options["parser"]);
+        return $this->parser->toCss($source);
+    }
 }
