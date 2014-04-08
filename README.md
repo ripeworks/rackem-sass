@@ -30,4 +30,6 @@ You can pass an options `array()` with the middleware, or to a `Rackem\Sass\Envi
 |--------|------|---------|
 | __accepts__ | File extensions used to locate sass source files (order matters). | `array("sass", "scss", "scss.css", "sass.css", "css")` |
 | __paths__ | Paths used to locate sass source files (order matters). | `array(".")` |
+| __persist__ | If true, will serve compiled css file directly. If source sass file is newer than compiled file, the sass will be re-compiled before being served. | `false` |
+| __public__ | Path used to write persisted compiled css if `persist` is true | `getcwd()` |
 | __parser__ | Array of options passed into `Sass\Parser`. | `array("cache" => false)` |
